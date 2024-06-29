@@ -8,23 +8,23 @@ public class KhicthenObj : MonoBehaviour
 {
     [SerializeField] private ChitchenObjSO kitchenObjSO;
 
-    private ClearCounter clearCounter;
+    private IKitchenObjParent kitchenObjParent;
     public ChitchenObjSO GetChitchenObjSO() { return kitchenObjSO; }
 
-    public void SetClearCounter(ClearCounter clearCounter) {
-        if (this.clearCounter !=null)
+    public void SetKitchenObjParent(IKitchenObjParent kitchenObjParent) {
+        if (this.kitchenObjParent !=null)
         {
-            this.clearCounter.ClearKitchenObj();
+            this.kitchenObjParent.ClearKitchenObj();
         }
-        this.clearCounter = clearCounter;
-        if (clearCounter.HasKitchenObj()) {
-            Debug.LogError("counteralrdy has a kitobj");
+        this.kitchenObjParent = kitchenObjParent;
+        if (kitchenObjParent.HasKitchenObj()) {
+            Debug.LogError("IKitchenObjParent alrdy has a kitobj");
         
         }
-        clearCounter.SetKitchenObj(this);
-        transform.parent = clearCounter.GetKitchenObjFollowTransform();
+        kitchenObjParent.SetKitchenObj(this);
+        transform.parent = kitchenObjParent.GetKitchenObjFollowTransform();
         transform.localPosition = Vector3.zero;
     }
 
-    public ClearCounter GetClearCounter() { return clearCounter; }
+    public IKitchenObjParent GetKitchenObjParent() { return kitchenObjParent; }
 }
