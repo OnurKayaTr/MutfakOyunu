@@ -6,8 +6,8 @@ public class SelectedCounterVisual : MonoBehaviour
 {
 
 
-    [SerializeField] private ClearCounter clearCounter;
-    [SerializeField] private GameObject visualGameObj;
+    [SerializeField] private BaseCounter baseCounter;
+    [SerializeField] private GameObject[] visualGameObjArray;
     private void Start()
     {
         Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
@@ -15,15 +15,21 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Player_OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
     {
-        if (e.selectedCounter == clearCounter) { Show(); }
+        if (e.selectedCounter == baseCounter) { Show(); }
         else { Hide(); }
     }
     private void Show()
     {
-        visualGameObj.SetActive(true);
+        foreach (GameObject visualGameObject in visualGameObjArray)
+        {
+            visualGameObject.SetActive(true);
+        }
     }
     private void Hide()
     {
-        visualGameObj.SetActive(false);
+        foreach (GameObject visualGameObject in visualGameObjArray)
+        {
+            visualGameObject.SetActive(false);
+        }
     }
 }

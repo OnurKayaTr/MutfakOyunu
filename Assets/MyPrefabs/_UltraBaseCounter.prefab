@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 491888578438785341}
   - component: {fileID: 8139989980671485515}
-  - component: {fileID: -6197396191378380192}
   m_Layer: 6
   m_Name: _UltraBaseCounter
   m_TagString: Untagged
@@ -55,20 +54,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5720824, y: 2.01, z: 1.4722013}
   m_Center: {x: 0.017410338, y: 0.6282066, z: 0.057596564}
---- !u!114 &-6197396191378380192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625820629352786453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3138eb6d75c92845853be11ed24d02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitchenObjSO: {fileID: 11400000, guid: c2b908acea9adf048ad1a622e0cd267e, type: 2}
-  counterTopPoint: {fileID: 1161990870317120450}
 --- !u!1 &5563371744802578193
 GameObject:
   m_ObjectHideFlags: 0
