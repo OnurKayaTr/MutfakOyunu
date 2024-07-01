@@ -27,4 +27,19 @@ public class KhicthenObj : MonoBehaviour
     }
 
     public IKitchenObjParent GetKitchenObjParent() { return kitchenObjParent; }
+
+    public void DestroySelf()
+    {
+        kitchenObjParent.ClearKitchenObj();
+        Destroy(gameObject);
+    }
+
+    public static KhicthenObj SpawnKitchenObj(ChitchenObjSO chitchenObjS,IKitchenObjParent kitchenObjParent)
+    {
+        
+        Transform kitchenObjSOTranform = Instantiate(chitchenObjS.prefab);
+        KhicthenObj khicthenObj = kitchenObjSOTranform.GetComponent<KhicthenObj>();
+        khicthenObj.SetKitchenObjParent(kitchenObjParent);
+        return khicthenObj;
+    }
 }
