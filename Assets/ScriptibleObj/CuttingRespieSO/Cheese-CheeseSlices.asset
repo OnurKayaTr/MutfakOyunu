@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653a8c9831b643548819426f58429d68, type: 3}
+  m_Name: Cheese-CheeseSlices
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 60b3097440b911043b8cd587032915c1, type: 2}
+  output: {fileID: 11400000, guid: 28ee14d58e903d24990aafd868364c52, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
-    [SerializeField] private ChitchenObjSO cutKitchenObjSo;
+    [SerializeField] private CuttingRecipeSO[] cuttingRecipeSoArray;
     public override void Interact(Player player)
     {
         if (!HasKitchenObj())
@@ -13,7 +13,11 @@ public class CuttingCounter : BaseCounter
             if (player.HasKitchenObj())
             {
                 // Player Carry
-                player.GetKhicthenObj().SetKitchenObjParent(this);
+                if (HasRecipeWhithInput(player.GetKhicthenObj().GetChitchenObjSO())) {
+
+                    player.GetKhicthenObj().SetKitchenObjParent(this);
+                }
+                
             }
             else
             {
@@ -37,11 +41,36 @@ public class CuttingCounter : BaseCounter
     }
     public override void InteractAlternate(Player player)
     {
-        if (HasKitchenObj()) { 
-        
+        if (HasKitchenObj() && HasRecipeWhithInput(GetKhicthenObj().GetChitchenObjSO())) {
+            ChitchenObjSO outputchitchenObjSO = GetOutputForInput(GetKhicthenObj().GetChitchenObjSO());
             GetKhicthenObj().DestroySelf();
-            KhicthenObj.SpawnKitchenObj(cutKitchenObjSo,this);
+            KhicthenObj.SpawnKitchenObj(outputchitchenObjSO, this);
             
         }
+    }
+
+    private bool HasRecipeWhithInput(ChitchenObjSO inputChitchenObjSO) {
+        foreach(CuttingRecipeSO cuttingRecipeSO in cuttingRecipeSoArray)
+        {
+            if (cuttingRecipeSO.input == inputChitchenObjSO)
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    private ChitchenObjSO GetOutputForInput(ChitchenObjSO inputchitchenObjSO)
+    {
+        foreach (CuttingRecipeSO cuttingRecipeSO in cuttingRecipeSoArray)
+        {
+            if (cuttingRecipeSO.input == inputchitchenObjSO)
+            {
+                return cuttingRecipeSO.output;
+            }
+           
+        }
+        return null;
     }
 }

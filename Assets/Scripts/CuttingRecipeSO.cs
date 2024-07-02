@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CuttingRecipeSO : MonoBehaviour
+[CreateAssetMenu()]
+public class CuttingRecipeSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ChitchenObjSO input;
+    public ChitchenObjSO output;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
