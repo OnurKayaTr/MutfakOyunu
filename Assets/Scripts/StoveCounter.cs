@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static CuttingCounter;
 
-public class StoveCounter : BaseCounter
-{
+public class StoveCounter : BaseCounter,IHasProgges
 
-    private  enum State
+{
+    public event EventHandler<IHasProgges.OnProgressCahangedEventArgs> OnProgressCahanged;
+
+    public event EventHandler<OnStateChangedEventArggs> OnStateChanged;
+    public class OnStateChangedEventArggs: EventArgs { public State state; }
+    public  enum State
     { Idle,Frying,Fried,Burned
 
     }
@@ -36,7 +41,11 @@ public class StoveCounter : BaseCounter
                 break;
                 case State.Frying:
                 fryingTimer += Time.deltaTime;
-                if (fryingTimer > fryingRecipeSO.FryingTimerMax)
+                    OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs
+                    {
+                        progressNomralized = fryingTimer / fryingRecipeSO.FryingTimerMax
+                    });
+                    if (fryingTimer > fryingRecipeSO.FryingTimerMax)
                 {
                     //Fried
                    
@@ -49,10 +58,20 @@ public class StoveCounter : BaseCounter
                         state = State.Fried;
                         burningTimer = 0f;
                         burningRecipeSO = GetBurningRecipeSOWithInput(GetKhicthenObj().GetChitchenObjSO());
+
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArggs()
+                        {
+                            state = state
+                        });
+
                     }
                 break;
                     case State.Fried:
                     burningTimer += Time.deltaTime;
+                    OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs
+                    {
+                        progressNomralized = burningTimer / burningRecipeSO.BurningTimerMax
+                    });
                     if (burningTimer > burningRecipeSO.BurningTimerMax)
                     {
                         //Fried
@@ -63,6 +82,14 @@ public class StoveCounter : BaseCounter
                         
 
                         state = State.Burned;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArggs()
+                        {
+                            state = state
+                        });
+                        OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs
+                        {
+                            progressNomralized = 0f
+                        });
                     }
                     break;
 
@@ -89,6 +116,15 @@ public class StoveCounter : BaseCounter
 
                     state = State.Frying;
                     fryingTimer = 0f;
+                    OnStateChanged?.Invoke(this, new OnStateChangedEventArggs()
+                    {
+                        state = state
+                    });
+
+                    OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs
+                    {
+                        progressNomralized = fryingTimer / fryingRecipeSO.FryingTimerMax
+                    });
                 }
 
             }
@@ -110,6 +146,15 @@ public class StoveCounter : BaseCounter
                 //Player NOT Caryy smthng
                 GetKhicthenObj().SetKitchenObjParent(player);
                 state = State.Idle;
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArggs()
+                {
+                    state = state
+                });
+
+                OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs
+                {
+                    progressNomralized = 0f
+                });
             }
 
         }

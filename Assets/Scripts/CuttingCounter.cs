@@ -3,13 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter, IHasProgges
 {
-    public event EventHandler<OnProgressCahangedEventArgs> OnProgressCahanged;
-    public class OnProgressCahangedEventArgs : EventArgs
-    {
-        public float progressNomralized;
-    }
+    public event EventHandler<IHasProgges.OnProgressCahangedEventArgs> OnProgressCahanged;
+    
     public event EventHandler OnCut;
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSoArray;
 
@@ -29,7 +26,7 @@ public class CuttingCounter : BaseCounter
                     cuttingProgress = 0;
                     CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKhicthenObj().GetChitchenObjSO());
 
-                    OnProgressCahanged?.Invoke(this, new OnProgressCahangedEventArgs { progressNomralized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax });
+                    OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs { progressNomralized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax });
                 }
                 
             }
@@ -61,7 +58,7 @@ public class CuttingCounter : BaseCounter
             OnCut?.Invoke(this, EventArgs.Empty);
 
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKhicthenObj().GetChitchenObjSO());
-            OnProgressCahanged?.Invoke(this, new OnProgressCahangedEventArgs { progressNomralized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax });
+            OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs { progressNomralized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax });
 
             if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax)
             {
