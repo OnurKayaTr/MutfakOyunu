@@ -32,8 +32,22 @@ public class KhicthenObj : MonoBehaviour
     {
         kitchenObjParent.ClearKitchenObj();
         Destroy(gameObject);
+
     }
 
+    public bool TryGetPlate(out PlateKhitchenObj plateKhitchenObj)
+    {
+        if(this is PlateKhitchenObj)
+        {
+            plateKhitchenObj = this as PlateKhitchenObj;
+            return true;
+        }
+        else
+        {
+            plateKhitchenObj=null;
+            return false;
+        }
+    }
     public static KhicthenObj SpawnKitchenObj(ChitchenObjSO chitchenObjS,IKitchenObjParent kitchenObjParent)
     {
         

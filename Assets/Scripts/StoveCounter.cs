@@ -140,6 +140,26 @@ public class StoveCounter : BaseCounter,IHasProgges
             {
                 //Player Caryy smthng
 
+                if (player.GetKhicthenObj().TryGetPlate(out PlateKhitchenObj plateKhitchenObj))
+                {
+                    //Player Holding Plate
+                    if (plateKhitchenObj.TryAddIngredient(GetKhicthenObj().GetChitchenObjSO()))
+                    {
+                        GetKhicthenObj().DestroySelf();
+                        state = State.Idle;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArggs()
+                        {
+                            state = state
+                        });
+
+                        OnProgressCahanged?.Invoke(this, new IHasProgges.OnProgressCahangedEventArgs
+                        {
+                            progressNomralized = 0f
+                        });
+                    }
+
+                }
+
             }
             else
             {

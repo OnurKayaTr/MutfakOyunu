@@ -31,6 +31,24 @@ public class ClearCounter : BaseCounter
             if (player.HasKitchenObj())
             {
                 //Player Caryy smthng
+                if (player.GetKhicthenObj().TryGetPlate(out PlateKhitchenObj plateKhitchenObj)) {
+                    //Player Holding Plate
+                    if (plateKhitchenObj.TryAddIngredient(GetKhicthenObj().GetChitchenObjSO()))
+                    {
+                        GetKhicthenObj().DestroySelf();
+                    }
+
+                }
+                else
+                {
+                    //player not cry plate But some 
+                    if(GetKhicthenObj().TryGetPlate(out  plateKhitchenObj))
+                    {
+                        if (plateKhitchenObj.TryAddIngredient(player.GetKhicthenObj().GetChitchenObjSO())){
+                            player.GetKhicthenObj().DestroySelf();
+                        }
+                    }
+                }
 
             }
             else {

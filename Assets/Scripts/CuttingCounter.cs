@@ -42,6 +42,16 @@ public class CuttingCounter : BaseCounter, IHasProgges
             {
                 //Player Caryy smthng
 
+                if (player.GetKhicthenObj().TryGetPlate(out PlateKhitchenObj plateKhitchenObj))
+                {
+                    //Player Holding Plate
+                    if (plateKhitchenObj.TryAddIngredient(GetKhicthenObj().GetChitchenObjSO()))
+                    {
+                        GetKhicthenObj().DestroySelf();
+                    }
+
+                }
+
             }
             else
             {
