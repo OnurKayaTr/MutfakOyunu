@@ -35,4 +35,10 @@ public class PlateKhitchenObj : KhicthenObj
             return true;
         }
     }
+
+
+    public List<ChitchenObjSO> GetChitchenObjSOList()
+    {
+        return chitchenObjSOList;
+    }
 }
