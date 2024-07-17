@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d138cdbd11e89c348a2a54396c689bd4, type: 3}
+  m_Name: Burger
+  m_EditorClassIdentifier: 
+  chitchenObjSOList:
+  - {fileID: 11400000, guid: 9150a61f3f5011643b9ae476345d14b7, type: 2}
+  - {fileID: 11400000, guid: d73d90061b164db4e8d5c9568e270466, type: 2}
+  RecipeName: Burger
