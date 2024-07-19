@@ -7,6 +7,8 @@ public class Player : MonoBehaviour,IKitchenObjParent
 {
 
     public static Player Instance { get; set; }
+
+    public event EventHandler OnpickedSomething;
     
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour,IKitchenObjParent
    [SerializeField] private PlayerInputs gameInput;
    [SerializeField] private LayerMask counterLayerMask;
    [SerializeField] private Transform kitchenObjTholdPoint;
+   
     private Vector3 lastInteractDir;
     private BaseCounter selectedCounter;
     private KhicthenObj kitchenObject;
@@ -52,7 +55,7 @@ public class Player : MonoBehaviour,IKitchenObjParent
         HandleOInteractions();
     }
 
-
+    
 
     private void HandleOInteractions()
     {
@@ -150,6 +153,10 @@ public class Player : MonoBehaviour,IKitchenObjParent
     public void SetKitchenObj(KhicthenObj kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+        if(kitchenObject != null)
+        {
+            OnpickedSomething?.Invoke(this,EventArgs.Empty);
+        }
     }
     public KhicthenObj GetKhicthenObj() { return kitchenObject; }
     public void ClearKitchenObj() { kitchenObject = null; }
