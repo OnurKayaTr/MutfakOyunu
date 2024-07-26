@@ -33,8 +33,8 @@ Material:
     m_Floats:
     - _FaceDilate: 0.1
     - _OutlineWidth: 0.1
-    - _ScaleRatioA: 0.9
-    - _ScaleRatioC: 0.64125
+    - _ScaleRatioA: 0.8
+    - _ScaleRatioC: 0.62
     - _TextureHeight: 1024
     - _TextureWidth: 1024
     m_Colors: []
