@@ -14,6 +14,7 @@ public static class Loader
 
     private static Scene targetScence;
 
+
     public static void Load(Scene targetScene)
     {
         Loader.targetScence = targetScene;

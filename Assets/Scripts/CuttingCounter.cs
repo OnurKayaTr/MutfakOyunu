@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter, IHasProgges
 {
+
     public static event EventHandler OnAnyCut;
+    new public static void ResetStaticData()
+    {
+        OnAnyCut = null;
+    }
+
+
     public event EventHandler<IHasProgges.OnProgressCahangedEventArgs> OnProgressCahanged;
     
     public event EventHandler OnCut;
+
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSoArray;
 
 
