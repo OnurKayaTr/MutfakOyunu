@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     private float watigToStartTimmer = 1f;
     private float countdownToStartTimmer = 3f;
     private float gameplayingTimmer;
-    private float gameplayingTimmerMax = 10f;
+    private float gameplayingTimmerMax = 100f;
     private bool isGamePaused = false;
 
     private void Awake()
